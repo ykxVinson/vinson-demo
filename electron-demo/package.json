@@ -1,0 +1,51 @@
+{
+  "name": "PersonifyWebRTCDemo",
+  "version": "1.0.1",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack":"electron-builder --dir",
+    "dist":"electron-builder"
+  },
+  "build":{
+    "appId":"com.azimiao.test",
+    "asar":true,
+    "directories":{
+      "buildResources":"build",
+      "output":"dist"
+    },
+    "win":{
+      "target": [{
+        "target":"nsis"
+      }],
+      "icon":"build/favicon.ico",
+      "asarUnpack":[
+        "src/**",
+        "README.md"
+      ]
+    },
+    "nsis":{
+      "oneClick":false,
+      "allowElevation":true,
+      "allowToChangeInstallationDirectory":true,
+      "installerIcon":"build/install_favicon.ico",
+      "uninstallerIcon":"build/uninstall_favicon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^17.1.1",
+    "electron-builder": "^22.14.13"
+  }
+}
