@@ -1,0 +1,10 @@
+spring:
+  rabbitmq:
+    host: 192.168.40.129
+    port: 5672
+    virtual-host: /
+    username: vinson
+    password: 123456
+    listener:
+      simple:
+        prefetch: 1 # 每次只取一个进行消费，取的消费个数
