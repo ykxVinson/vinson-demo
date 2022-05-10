@@ -20,17 +20,17 @@ public class ResultDTO<T> {
     }
 
     public static <T> ResultDTO<T> SUCCESS(){
-        return new ResultDTO<>(ResultCode.OK.code(),ResultCode.OK.msg());
+        return new ResultDTO<T>(ResultCode.OK.code(),ResultCode.OK.msg());
     }
     public static <T> ResultDTO<T> SUCCESS(T data){
         return new ResultDTO<>(ResultCode.OK.code(),ResultCode.OK.msg(),data);
     }
 
     public static <T> ResultDTO<T> ERROR(){
-        return new ResultDTO<>(ResultCode.ERROR.code(),ResultCode.ERROR.msg());
+        return new ResultDTO<T>(ResultCode.ERROR.code(),ResultCode.ERROR.msg());
     }
     public static <T> ResultDTO<T> ERROR(Integer code, String msg){
-        return new ResultDTO<>(code,msg);
+        return new ResultDTO<T>(code,msg);
     }
     public static <T> ResultDTO<T> ERROR(T data){
         return new ResultDTO<>(ResultCode.ERROR.code(),ResultCode.ERROR.msg(),data);
