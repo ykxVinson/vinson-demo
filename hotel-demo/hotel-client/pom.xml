@@ -5,7 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.vinson</groupId>
-    <artifactId>hotel-simple</artifactId>
+    <artifactId>hotel-client</artifactId>
+    <name>hotel-client</name>
     <version>1.0</version>
 
     <parent>
@@ -52,6 +53,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.80</version>
+        </dependency>
+        <!--amqp -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
         <!-- test -->
         <dependency>

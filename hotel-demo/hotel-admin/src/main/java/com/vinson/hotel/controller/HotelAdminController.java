@@ -1,6 +1,7 @@
 package com.vinson.hotel.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.vinson.hotel.constants.MqConstants;
 import com.vinson.hotel.utils.ListResult;
 import com.vinson.hotel.utils.ResultDTO;
 import com.vinson.hotel.entity.Hotel;
@@ -8,6 +9,7 @@ import com.vinson.hotel.service.interfaces.IHotelService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,9 @@ public class HotelAdminController {
 
     @Autowired
     private IHotelService hotelService;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @ApiOperation(value = "Get hotel by Id.")
     @GetMapping("{id}")
@@ -42,6 +47,7 @@ public class HotelAdminController {
     @PutMapping
     public ResultDTO updateById(@RequestBody Hotel hotel){
         hotelService.updateById(hotel);
+        rabbitTemplate.convertAndSend(MqConstants.HOTEL_EXCHANGE, MqConstants.HOTEL_INSERT_KEY, hotel.getId());
         return ResultDTO.SUCCESS();
     }
 
@@ -49,6 +55,7 @@ public class HotelAdminController {
     @PostMapping
     public ResultDTO addHotel(@RequestBody Hotel hotel){
         hotelService.save(hotel);
+        rabbitTemplate.convertAndSend(MqConstants.HOTEL_EXCHANGE,MqConstants.HOTEL_INSERT_KEY, hotel.getId());
         return ResultDTO.SUCCESS();
     }
 
@@ -56,6 +63,7 @@ public class HotelAdminController {
     @DeleteMapping("{id}")
     public ResultDTO deleteById(@PathVariable("id") Long id){
         hotelService.removeById(id);
+        rabbitTemplate.convertAndSend(MqConstants.HOTEL_EXCHANGE, MqConstants.HOTEL_DELETE_KEY, id);
         return ResultDTO.SUCCESS();
     }
 }
