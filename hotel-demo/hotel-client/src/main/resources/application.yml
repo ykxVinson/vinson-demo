@@ -1,0 +1,28 @@
+server:
+  port: 8089
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.40.129:3306/heima?useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mvc:
+    static-path-pattern: /statics/**
+  resources:
+    static-locations: classpath:/statics/
+
+# 记录日志的配置
+logging:
+  pattern:
+    dateformat: HH:mm:ss:SSS
+  file:
+    name: log/hotel.log
+  logback:
+    rollingpolicy:
+      max-file-size: 1024KB
+      file-name-pattern: log/hotel.%d{yyyy-MM-dd}.%i.log
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.vinson.hotel.domain
