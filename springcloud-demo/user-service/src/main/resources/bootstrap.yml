@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: userservice
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: 192.168.40.128:8848
+      discovery:
+        cluster-name: HZ # HZ is hangzhou
+      config:
+        file-extension: yaml

@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://rm-bp1alaogqe42n4iw0co.mysql.rds.aliyuncs.com/cloud_user?useSSL=false
+      username: cloud_user
+      password: CHENjia520
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
