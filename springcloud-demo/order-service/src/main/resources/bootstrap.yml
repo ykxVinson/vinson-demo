@@ -10,3 +10,6 @@ spring:
         cluster-name: HZ # HZ is hangzhou
       config:
         file-extension: yaml
+    sentinel:
+      transport:
+        dashboard: localhost:5001 # sentinel控制台地址
