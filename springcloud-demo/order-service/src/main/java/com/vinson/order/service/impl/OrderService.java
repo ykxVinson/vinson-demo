@@ -1,5 +1,6 @@
 package com.vinson.order.service.impl;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.vinson.feign.clients.UserClient;
 import com.vinson.feign.domain.User;
 import com.vinson.order.dao.OrderDao;
@@ -7,6 +8,7 @@ import com.vinson.order.domain.Order;
 import com.vinson.order.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
 public class OrderService implements IOrderService {
@@ -26,5 +28,11 @@ public class OrderService implements IOrderService {
         //3. 封装user到order
         order.setUser(user);
         return order;
+    }
+
+    @SentinelResource("goods")
+    @Override
+    public void queryGoods(){
+        System.err.println("查询商品");
     }
 }

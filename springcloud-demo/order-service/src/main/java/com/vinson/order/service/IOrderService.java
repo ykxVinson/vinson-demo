@@ -4,4 +4,5 @@ import com.vinson.order.domain.Order;
 
 public interface IOrderService {
     Order getOrderById(long orderId);
+    void queryGoods();
 }
