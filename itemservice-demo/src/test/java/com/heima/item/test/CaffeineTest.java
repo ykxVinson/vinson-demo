@@ -13,22 +13,20 @@ public class CaffeineTest {
      */
     @Test
     void testBasicOps() {
-        // 创建缓存对象
+      // 构建cache对象
         Cache<String, String> cache = Caffeine.newBuilder().build();
-
-        // 存数据
+        //存数据
         cache.put("gf", "迪丽热巴");
 
-        // 取数据，不存在则返回null
+        //取数据
         String gf = cache.getIfPresent("gf");
-        System.out.println("gf = " + gf);
+        System.out.println("gf= "+ gf);
 
-        // 取数据，不存在则去数据库查询
-        String defaultGF = cache.get("defaultGF", key -> {
-            // 这里可以去数据库根据 key查询value
-            return "柳岩";
+        String defaultGF = cache.get("defaultGF", key ->{
+           return "范冰冰";
         });
-        System.out.println("defaultGF = " + defaultGF);
+
+        System.out.println("defaultGF= " + defaultGF);
     }
 
     /*
