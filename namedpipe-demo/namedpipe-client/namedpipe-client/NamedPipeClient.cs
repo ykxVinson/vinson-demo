@@ -18,7 +18,7 @@ namespace namedpipe_client
     }
 
     /// <summary>
-    /// 客户端管道
+    /// NamedPipe Client
     /// </summary>
     class NamedPipeClient
     {
@@ -112,7 +112,6 @@ namespace namedpipe_client
             else
             {
                 Array.Clear(state.Buffer, 0, BufferSize);
-                //再次执行异步读取操作
                 state.Stream.BeginRead(state.Buffer, 0, BufferSize, new AsyncCallback(ReadCallback), state);
             }
         }
